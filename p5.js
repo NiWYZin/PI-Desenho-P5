@@ -74,9 +74,9 @@ function FrenteTras(){
 
 function FrenteTras(){
     if(keyIsDown(LEFT_ARROW))
-        velocidade += 0.01;
+        velocidade += 0.02;
      if(keyIsDown(RIGHT_ARROW))
-        velocidade -= 0.01;
+        velocidade -= 0.02;
 
 }
 
