@@ -13,7 +13,6 @@ let SliderAtrito,SliderComprimento;
 function setup() {
 
   createCanvas(windowWidth, windowHeight);
-<<<<<<< HEAD
   //define o angulo em radianos entre 30 e 180 graus
   angulo = PI / random(1,6);
 
@@ -22,11 +21,9 @@ function setup() {
 
 
   //cria os sliders
-=======
   angulo = PI / random(1,6);
   origem =[width/2,height/2];
 
->>>>>>> 41b7b6a6e10f5a7f7a6dc15969796829ad49ac95
   SliderAtrito = createSlider(1,3);
   SliderAtrito.position(10,0);
   SliderAtrito.size(100);
@@ -62,14 +59,6 @@ function FrenteTras(){
         velocidade += 0.01;
      if(keyIsDown(RIGHT_ARROW))
         velocidade -= 0.01;
-
-}
-
-function FrenteTras(){
-    if(keyIsDown(LEFT_ARROW))
-        velocidade += 0.02;
-     if(keyIsDown(RIGHT_ARROW))
-        velocidade -= 0.02;
 
 }
 
