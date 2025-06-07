@@ -21,8 +21,6 @@ function setup() {
 
 
   //cria os sliders
-  angulo = PI / random(1,6);
-  origem =[width/2,height/2];
 
   SliderAtrito = createSlider(1,3);
   SliderAtrito.position(10,0);
@@ -43,10 +41,6 @@ function draw() {
     atualizarAtrito();
     FrenteTras()
     fisica(gravidade,comprimento);
-    
-    
-    PosDaMassa();
-    desenharPendulo()
     
     
     PosDaMassa();
@@ -79,7 +73,7 @@ function PosDaMassa(){
 }
 
 function atualizarAtrito(){
-
+//testando isso aqui, não é definitivo
     switch(SliderAtrito.value()){
         case 1: atrito = 1.0;break;
         case 2: atrito = 0.7;break;
