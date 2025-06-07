@@ -1,80 +1,86 @@
-let x,y;
-let comprimento = 0;
-let anguloRad;
-let velocidadeAng = 0;
-let gravidade = -0.4;
-let Atrito = 0.99;
-let origem;
-let massa;
-let circuloY;
 
+//Constantes
+let gravidade = -0.4, atrito = 0.99;
+//Cordenadas
+let origem,posicaoMassa;
+let massaX, massaY;
+//Velocidade, angulo, e pendulo
+let velocidade = 0,angulo,comprimento,aceleracao;
+//Sliders
+let SliderAtrito,SliderComprimento;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  anguloRad = Math.PI / random(1,6);
-
-  slider = createSlider(1,2);
-  slider.position(10,0);
-  slider.size(100);
-
-  slider2 = createSlider (2,400);
-  slider2.position(10,50);
-  slider2.size (100);
-
+  angulo = PI / random(1,6);
   origem =[width/2,height/2];
-  botao = createButton("relancar");
-  botao.position(10,20);
-  botao.mousePressed(relancar);
+
+  SliderAtrito = createSlider(1,3);
+  SliderAtrito.position(10,0);
+  SliderAtrito.size(100);
+
+  SliderComprimento = createSlider (20,400);
+  SliderComprimento.position(10,50);
+  SliderComprimento.size (100);
+
 }
 
 function draw() {
-    comprimento = slider2.value();
-    origem =[width/2,height/2];
     background(0,0,0,50);
-    if(slider.value() == 1){
-        Atrito = 1.0;
-        velocidadeAng = 0.1;
-        
-    } else if (slider.value() == 2){
-        Atrito = 0.99;
-    }
-
-
+    comprimento = SliderComprimento.value();
+    atualizarAtrito();
+    FrenteTras()
     fisica(gravidade,comprimento);
-    posY()
-
-    strokeWeight(5);
-    stroke(255,255,0)
-    fill(255,0,0);
-    line(origem[0],origem[1],massa[0],massa[1]);
-    line(origem[0]+50,origem[1],massa[0]+50,massa[1]);
-    fill(255,0,0);
-    circle(massa[0],massa[1],40);
-    circle(massa[0]+50,massa[1],40);
     
+    
+    PosDaMassa();
+    desenharPendulo()
+    
+
+}
+function FrenteTras(){
+    if(keyIsDown(LEFT_ARROW))
+        velocidade += 0.01;
+     if(keyIsDown(RIGHT_ARROW))
+        velocidade -= 0.01;
 
 }
 
 function fisica(gravidade, comprimento){
-    let AceleracaoAngular;
-    AceleracaoAngular = (gravidade / comprimento) * sin(anguloRad);
-    velocidadeAng += AceleracaoAngular;
-    velocidadeAng *= Atrito;
-    anguloRad += velocidadeAng;
-}
-function relancar(){
-    anguloRad = Math.PI / random(1,6);
-    velocidadeAng = 0;
+    let aceleracao;
+    aceleracao = (gravidade / comprimento) * sin(angulo);
+    velocidade += aceleracao;
+    velocidade *= atrito;
+    angulo += velocidade;
 }
 
-function posY(){
+function PosDaMassa(){
 
-    x = origem[0] + comprimento * sin(anguloRad);
-    y = origem[1] + comprimento * cos(anguloRad);
-    massa = [x,y];
+    massaX = origem[0] + comprimento * sin(angulo);
+    massaY = origem[1] + comprimento * cos(angulo);
+    posicaoMassa = [massaX,massaY];
 
 }
 
+function atualizarAtrito(){
+
+    switch(SliderAtrito.value()){
+        case 1: atrito = 1.0;break;
+        case 2: atrito = 0.7;break;
+        default: atrito = 0.99;
+    }
+
+}
+function desenharPendulo(){
+
+    strokeWeight(5);
+    stroke(255,255,0)
+    fill(255,0,0);
+    line(origem[0],origem[1],posicaoMassa[0],posicaoMassa[1]);
+
+
+    fill(255,0,0);
+    circle(posicaoMassa[0],posicaoMassa[1],100);
+
+}
 
