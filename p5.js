@@ -39,7 +39,6 @@ function setup() {
 
 function draw() {
     background(0,0,0,50);
-<<<<<<< HEAD
 
 
     comprimento = SliderComprimento.value();
@@ -51,12 +50,6 @@ function draw() {
     
     PosDaMassa();
     desenharPendulo()
-=======
-    comprimento = SliderComprimento.value();
-    atualizarAtrito();
-    FrenteTras()
-    fisica(gravidade,comprimento);
->>>>>>> 41b7b6a6e10f5a7f7a6dc15969796829ad49ac95
     
     
     PosDaMassa();
