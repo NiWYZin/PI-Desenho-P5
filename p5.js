@@ -3,15 +3,15 @@
 //Constantes
 let gravidade = 0.7, atrito = 0.99;
 
-//Cordenadas
+//Cordenadas polares, e pontos de origem
 let origem,posicaoMassa;
 let massaX, massaY;
-//Velocidade, angulo, e comprimento das cordas
 
+//Velocidade, angulo, e comprimento das cordas
 let velocidade = 0,angulo,comprimento = 350,aceleracao;
 
-//Sliders
-let SliderAtrito,SliderComprimento;
+//Slider
+let SliderAtrito;
 
 
 
@@ -30,27 +30,30 @@ function setup() {
   //cria o slider
 
   SliderAtrito = createSlider(1,3);
-  SliderAtrito.position(10,0);
-  SliderAtrito.size(100);
+  SliderAtrito.position(width-250,50);
+  SliderAtrito.size(200);
 
 
 }
 
 function draw() {
+    //O cenário
     background(95, 205, 217);
     desenharCenario();
 
+    //A fisica e algumas outras coisas interativas
     SliderDeAtualizarAtrito();
-    FrenteTras()
+    empurrarbalanço()
     fisica(gravidade,comprimento);
+
+    //A criança e o balanço 
     PosDaMassa();
- 
     desenharPendulo();
 
     
 
 }
-function FrenteTras(){
+function empurrarbalanço(){
     if(keyIsDown(LEFT_ARROW))
         velocidade -= 0.005;
      if(keyIsDown(RIGHT_ARROW))
@@ -75,6 +78,11 @@ function PosDaMassa(){
 }
 
 function SliderDeAtualizarAtrito(){
+
+    fill(255,255,255);
+    textSize(30)
+    text("Troque o atrito",width-250,50);
+
 if(SliderAtrito.value() == 3){
     atrito = 0.99;
 } else if (SliderAtrito.value() == 2){
@@ -136,6 +144,7 @@ function desenharBalanço(x, y){
 
 function desenharCenario(){
 
+    noStroke();
     fill(255,255,0);
     circle(0, 0, 700);
     fill(50, 150, 0);
