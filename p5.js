@@ -59,7 +59,7 @@ function draw() {
 }
 function empurrarbalanço(){
     text("Seta Para direita empurra para direita",width-550,900);
-    text("Seta Para esquerda empurra para esquerda",width-1900,900);
+    text("Seta Para esquerda empurra para esquerda",10,900);
 
     if(keyIsDown(LEFT_ARROW))
         velocidade -= 0.003;
