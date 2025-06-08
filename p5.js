@@ -88,8 +88,8 @@ function desenharCenario(){
 
     strokeWeight(5);
     stroke(150)
-    line(origem[0]+50,origem[1]-150,posicaoMassa[0]+40,posicaoMassa[1]-150);
-    line(origem[0]-50,origem[1]-150,posicaoMassa[0]-40,posicaoMassa[1]-150);
+    line(origem[0]+40,origem[1]-150,posicaoMassa[0]+40,posicaoMassa[1]-150);
+    line(origem[0]-40,origem[1]-150,posicaoMassa[0]-40,posicaoMassa[1]-150);
 
     noStroke();
 }
