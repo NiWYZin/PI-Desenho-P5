@@ -1,11 +1,11 @@
 
 //Constantes
-let gravidade = -0.4, atrito = 0.99;
+let gravidade = 0.7, atrito = 0.99;
 //Cordenadas
 let origem,posicaoMassa;
 let massaX, massaY;
-//Velocidade, angulo, e pendulo
-let velocidade = 0,angulo,comprimento,aceleracao;
+//Velocidade, angulo, e Pendulo
+let velocidade = 0,angulo,comprimento = 350,aceleracao;
 //Sliders
 let SliderAtrito,SliderComprimento;
 
@@ -26,39 +26,36 @@ function setup() {
   SliderAtrito.position(10,0);
   SliderAtrito.size(100);
 
+    /*
   SliderComprimento = createSlider (20,400);
   SliderComprimento.position(10,50);
   SliderComprimento.size (100);
-
+    */
+  frameRate(60)
 }
 
 function draw() {
-    background(0,0,0,50);
-
-
-    comprimento = SliderComprimento.value();
+    background(95, 205, 217);
 
     atualizarAtrito();
     FrenteTras()
     fisica(gravidade,comprimento);
-    
-    
-    PosDaMassa();
-    desenharPendulo()
-    
 
+    PosDaMassa();
+    desenharCenario()
+    
 }
 function FrenteTras(){
-    if(keyIsDown(LEFT_ARROW))
-        velocidade += 0.01;
-     if(keyIsDown(RIGHT_ARROW))
-        velocidade -= 0.01;
+    if(keyIsDown(RIGHT_ARROW))
+        velocidade += 0.001;
+     if(keyIsDown(LEFT_ARROW))
+        velocidade -= 0.001;
 
 }
 
 function fisica(gravidade, comprimento){
     let aceleracao;
-    aceleracao = (gravidade / comprimento) * sin(angulo);
+    aceleracao = (-gravidade / comprimento) * sin(angulo);
     velocidade += aceleracao;
     velocidade *= atrito;
     angulo += velocidade;
@@ -76,21 +73,27 @@ function atualizarAtrito(){
 //testando isso aqui, não é definitivo
     switch(SliderAtrito.value()){
         case 1: atrito = 1.0;break;
-        case 2: atrito = 0.7;break;
+        case 2: atrito = 0.8;break;
         default: atrito = 0.99;
     }
 
 }
-function desenharPendulo(){
+function desenharCenario(){
+
+    fill(255,255,0);
+    circle(0, 0, 500);
+    
+    fill(50, 150, 0);
+    rect(0, (height+100)/2, width, height/2);
+
+    noStroke();
+    fill(92, 56, 12);
+    rect(posicaoMassa[0]-50,posicaoMassa[1]-150,100, 20, 100);
 
     strokeWeight(5);
-    stroke(255,255,0)
-    fill(255,0,0);
-    line(origem[0],origem[1],posicaoMassa[0],posicaoMassa[1]);
+    stroke(150)
+    line(origem[0]+50,origem[1]-150,posicaoMassa[0]+40,posicaoMassa[1]-150);
+    line(origem[0]-50,origem[1]-150,posicaoMassa[0]-40,posicaoMassa[1]-150);
 
-
-    fill(255,0,0);
-    circle(posicaoMassa[0],posicaoMassa[1],100);
-
+    noStroke();
 }
-
