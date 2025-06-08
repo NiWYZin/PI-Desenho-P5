@@ -95,8 +95,8 @@ function desenharPendulo(){
 
     strokeWeight(5);
     stroke(150)
-    line(origem[0]-100,origem[1],posicaoMassa[0]-50,posicaoMassa[1]);
-    line(origem[0]+100,origem[1],posicaoMassa[0]+50,posicaoMassa[1]);
+    line(origem[0]-60,origem[1],posicaoMassa[0]-50,posicaoMassa[1]);
+    line(origem[0]+60,origem[1],posicaoMassa[0]+50,posicaoMassa[1]);
 
     desenharBalanço(origem[0], origem[1]);
 
