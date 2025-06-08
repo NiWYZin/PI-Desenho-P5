@@ -58,6 +58,7 @@ function draw() {
 
 }
 function empurrarbalanço(){
+    textSize(30);
     text("Seta Para direita empurra para direita",width-550,900);
     text("Seta Para esquerda empurra para esquerda",10,900);
 
@@ -88,6 +89,10 @@ function SliderDeAtualizarAtrito(){
     fill(255,255,255);
     textSize(30)
     text("Troque o atrito",width-250,50);
+    textSize(25);
+    text("Padrão: 0.99",width-250,90);
+    text("Pos 2: 1",width-250,115);
+    text("Pos 1: 0.7",width-250,140);
 
 if(SliderAtrito.value() == 3){
     atrito = 0.99;
@@ -116,6 +121,7 @@ function desenharCriança(x, y){
     //Corpo
     fill(50, 100, 255);
     circle(x,y-30, 100);
+    
 
     //A Cabeça
     fill(255, 153, 85);
