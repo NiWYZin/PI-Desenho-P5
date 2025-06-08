@@ -26,12 +26,7 @@ function setup() {
   SliderAtrito.position(10,0);
   SliderAtrito.size(100);
 
-    /*
-  SliderComprimento = createSlider (20,400);
-  SliderComprimento.position(10,50);
-  SliderComprimento.size (100);
-    */
-  frameRate(60)
+
 }
 
 function draw() {
@@ -70,12 +65,13 @@ function PosDaMassa(){
 }
 
 function atualizarAtrito(){
-//testando isso aqui, não é definitivo
-    switch(SliderAtrito.value()){
-        case 1: atrito = 1.0;break;
-        case 2: atrito = 0.8;break;
-        default: atrito = 0.99;
-    }
+    if (SliderAtrito.value() == 3)
+        atrito = 0.99;
+    else if (SliderAtrito.value() == 2)
+            atrito = 1;
+        else    
+            atrito = 0.7
+    
 
 }
 function desenharCenario(){
