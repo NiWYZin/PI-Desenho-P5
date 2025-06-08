@@ -8,7 +8,7 @@ let origem,posicaoMassa;
 let massaX, massaY;
 
 //Velocidade, angulo, e comprimento das cordas
-let velocidade = 0,angulo,comprimento = 350,aceleracao;
+let velocidade = 0,angulo,comprimento = 350,aceleracaoAngular;
 
 //Slider
 let SliderAtrito;
@@ -24,7 +24,7 @@ function setup() {
   angulo = PI / random(1,6);
 
   //define os pontos de origem, da corda, e das cordenadas polares da massa
-  origem =[width/2,(height/2)-350];
+  origem =[width/2,(height/2)-100];
 
 
   //cria o slider
@@ -41,6 +41,7 @@ function draw() {
     background(95, 205, 217);
     desenharCenario();
 
+
     //A fisica e algumas outras coisas interativas
     SliderDeAtualizarAtrito();
     empurrarbalanço()
@@ -48,23 +49,28 @@ function draw() {
 
     //A criança e o balanço 
     PosDaMassa();
-    desenharPendulo();
+
+    DesenharPendulo();
+    desenharCriança(posicaoMassa[0], posicaoMassa[1]);
+    desenharBalanço(origem[0], origem[1]);
 
     
 
 }
 function empurrarbalanço(){
+    text("Seta Para direita empurra para direita",width-550,900);
+    text("Seta Para esquerda empurra para esquerda",width-1900,900);
+
     if(keyIsDown(LEFT_ARROW))
-        velocidade -= 0.005;
+        velocidade -= 0.003;
      if(keyIsDown(RIGHT_ARROW))
-        velocidade += 0.005;
+        velocidade += 0.003;
 
 }
 
 function fisica( gravidade, comprimento){
-    let aceleracao;
-    aceleracao = (-gravidade / comprimento) * sin(angulo);
-    velocidade += aceleracao;
+    aceleracaoAngular = (-gravidade / comprimento) * sin(angulo);
+    velocidade += aceleracaoAngular;
     velocidade *= atrito;
     angulo += velocidade;
 }
@@ -92,47 +98,47 @@ atrito = 1;
 
 
 }
-function desenharPendulo(){
+function DesenharPendulo(){
 
-    
+    //O Assento
     noStroke();
     fill(92, 56, 12);
     rect(posicaoMassa[0]-60,posicaoMassa[1]-15,120, 20, 50);
-
-    desenharCriança(posicaoMassa[0], posicaoMassa[1]);
-
     strokeWeight(5);
     stroke(150)
+    //As Cordas
     line(origem[0]-60,origem[1],posicaoMassa[0]-50,posicaoMassa[1]);
     line(origem[0]+60,origem[1],posicaoMassa[0]+50,posicaoMassa[1]);
-
-    desenharBalanço(origem[0], origem[1]);
-
     noStroke();
 
 }
 function desenharCriança(x, y){
+    //Corpo
     fill(50, 100, 255);
-    circle(x,y-50, 100);
-    
+    circle(x,y-30, 100);
+
+    //A Cabeça
     fill(255, 153, 85);
     circle(x,y-100, 100);
     circle(x+50,y-100, 30);
 
+    //O Olho
     fill(255);
     circle(x+20,y-110, 20);
     fill(0);
     circle(x+20,y-110, 15);
 
+    //A Boca 
     circle(x+35,y-75, 15);
-
     fill(50, 100, 255);
 
+    //O Chapéu
     rect((x-50),(y-50)-130, 90, 50, 20);
     rect((x-50)+30,(y-50)-100, 90, 20, 20);
 }
 
 function desenharBalanço(x, y){
+
     strokeWeight(15);
     stroke(92, 56, 12);
     line(x-150,y-10, x+150, y-10);
