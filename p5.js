@@ -58,9 +58,9 @@ function FrenteTras(){
 
 }
 
-function fisica(-gravidade, comprimento){
+function fisica( gravidade, comprimento){
     let aceleracao;
-    aceleracao = (gravidade / comprimento) * sin(angulo);
+    aceleracao = (-gravidade / comprimento) * sin(angulo);
     velocidade += aceleracao;
     velocidade *= atrito;
     angulo += velocidade;
